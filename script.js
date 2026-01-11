@@ -41,6 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
             userInput.placeholder = "Type your message...";
         };
 
+        recognition.onerror = (event) => {
+            micBtn.classList.remove('listening');
+            console.error("Speech verification error", event.error);
+        };
+
         recognition.onresult = (event) => {
             const transcript = event.results[0][0].transcript;
             userInput.value = transcript;
@@ -53,7 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (micBtn.classList.contains('listening')) {
                 recognition.stop();
             } else {
-                recognition.start();
+                try {
+                    recognition.start();
+                } catch (e) {
+                    alert("Could not start microphone: " + e.message);
+                }
             }
         });
     } else {
