@@ -20,9 +20,11 @@
 body {
     background-color: var(--bg-darker);
     color: var(--text-main);
-    overflow: hidden; /* Prevent body scroll, handle in chat-area */
+    overflow: hidden;
+    /* Prevent body scroll, handle in chat-area */
     height: 100vh;
-    height: 100dvh; /* Mobile viewport fix */
+    height: 100dvh;
+    /* Mobile viewport fix */
 }
 
 /* Dynamic Background */
@@ -34,7 +36,7 @@ body {
     height: 100%;
     z-index: -1;
     background: radial-gradient(circle at 10% 20%, rgba(233, 69, 96, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(15, 52, 96, 0.3) 0%, transparent 40%);
+        radial-gradient(circle at 90% 80%, rgba(15, 52, 96, 0.3) 0%, transparent 40%);
 }
 
 .app-container {
@@ -44,7 +46,8 @@ body {
     max-width: 600px;
     margin: 0 auto;
     position: relative;
-    background: rgba(26, 26, 46, 0.5); /* Subtle container tint */
+    background: rgba(26, 26, 46, 0.5);
+    /* Subtle container tint */
 }
 
 /* Header */
@@ -107,7 +110,8 @@ body {
     flex-direction: column;
     gap: 1rem;
     scroll-behavior: smooth;
-    padding-bottom: 80px; /* Space for input area */
+    padding-bottom: 80px;
+    /* Space for input area */
 }
 
 .welcome-message {
@@ -172,8 +176,15 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .message.user {
@@ -245,6 +256,74 @@ body {
 #send-btn:hover {
     transform: scale(1.05);
 }
+
+#mic-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-right: 5px;
+}
+
+#mic-btn:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#mic-btn.listening {
+    color: #e94560;
+    animation: pulse 1.5s infinite;
+    background: rgba(233, 69, 96, 0.2);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(233, 69, 96, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(233, 69, 96, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(233, 69, 96, 0);
+    }
+}
+
+/* Speaker Icon in Messages */
+.message-content-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.speak-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    margin-top: 2px;
+    transition: color 0.2s;
+}
+
+.speak-btn:hover {
+    color: white;
+}
+
+.speak-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
 
 /* Modal */
 .modal {
@@ -351,12 +430,27 @@ body {
     line-height: 0.5;
 }
 
-.typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
-.typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
-
-@keyframes bounce {
-    0%, 80%, 100% { transform: scale(0); }
-    40% { transform: scale(1); }
+.typing-indicator span:nth-child(1) {
+    animation-delay: -0.32s;
 }
 
-.hidden { display: none; }
+.typing-indicator span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}
+
+.hidden {
+    display: none;
+}
